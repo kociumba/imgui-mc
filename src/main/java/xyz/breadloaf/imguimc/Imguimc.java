@@ -17,6 +17,9 @@ public class Imguimc implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static final Minecraft MINECRAFT = Minecraft.getInstance();
     public static ArrayList<Renderable> renderstack = new ArrayList<>();
+
+    public static ArrayList<Renderable> toRemove = new ArrayList<>();
+
     @Override
     public void onInitializeClient() {
 
@@ -29,6 +32,11 @@ public class Imguimc implements ClientModInitializer {
 
     public static Renderable pullRenderable(Renderable renderable) {
         renderstack.remove(renderable);
+        return renderable;
+    }
+
+    public static Renderable pullRenderableAfterRender(Renderable renderable) {
+        toRemove.add(renderable);
         return renderable;
     }
 }

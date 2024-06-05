@@ -38,6 +38,11 @@ public class ImguiLoader {
             Imguimc.MINECRAFT.getProfiler().pop();
         }
 
+        for (Renderable renderable : Imguimc.toRemove) {
+            Imguimc.pullRenderable(renderable);
+        }
+        Imguimc.toRemove.clear();
+
         //end of user code
 
         ImGui.render();

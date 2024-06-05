@@ -1,12 +1,12 @@
 plugins {
-    id "fabric-loom" version "0.8-SNAPSHOT"
+    id "fabric-loom" version "1.6-SNAPSHOT"
     id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
 apply plugin: 'maven-publish'
 
-sourceCompatibility = JavaVersion.VERSION_16
-targetCompatibility = JavaVersion.VERSION_16
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -20,13 +20,13 @@ repositories {
 
 }
 
-runClient.doFirst {
-    args = ['--username', "breadloaf${new Random().nextInt(1000)}"]
-}
+//runClient.doFirst {
+//    args = ['--username', "breadloaf${new Random().nextInt(1000)}"]
+//}
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings minecraft.officialMojangMappings()
+    mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
@@ -56,7 +56,7 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
-    it.options.release = 16
+    it.options.release = 17
 }
 
 java {
@@ -71,7 +71,7 @@ jar {
 
 shadowJar {
     configurations = [project.configurations.shadow]
-    classifier 'shadow-dev'
+//    classifier 'shadow-dev'
     dependencies {
         exclude(dependency('org.lwjgl:lwjgl'))
         exclude(dependency('org.lwjgl:lwjgl-glfw'))
@@ -96,14 +96,14 @@ publishing {
         }
     }
     repositories {
-        maven {
-            credentials {
-                username "$mavenUser"
-                password "$mavenPassword"
-            }
-            name = 'breadloaf.public'
-            url = 'https://maven.breadloaf.xyz/repository/public'
-        }
+//        maven {
+//            credentials {
+//                username "$mavenUser"
+//                password "$mavenPassword"
+//            }
+//            name = 'breadloaf.public'
+//            url = 'https://maven.breadloaf.xyz/repository/public'
+//        }
 
     }
 }

@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_16",
   "client": [
     "GLFWInitMixin",
-    "TailRenderMixin"
+    "TailRenderMixin",
+    "TitleScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
