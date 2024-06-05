@@ -8,6 +8,7 @@ ImGui for minecraft based on imgui-java
 - Add more stuff to this todo list
 
 ## Maven repo
+**Version 1.20.4-1.0.4 and above not available**
 ```groovy
    maven {
         name = "breadloaf.public"
@@ -35,10 +36,11 @@ modImplementation "xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_version}"
 | MC version | imguimc version | imgui-java version                                                     |
 | ---------- | --------------- | ---------------------------------------------------------------------- |
 | 1.17.1     | 1.17.1-1.0.3    | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
+| 1.20.4     | 1.20.4-1.0.4    | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
 
 ## Features
 
-Use the same familiar imgui interface your used to to create a multi window interface in minecraft!
+Use the same familiar imgui interface your used to to create a multi window interface in minecraft! (+ screen api for easier development)
 
 ### Extensions:
 
