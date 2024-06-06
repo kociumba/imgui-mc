@@ -54,4 +54,14 @@ public class ImGuiScreen extends Screen {
                 onClose();
         }
     }
+
+    protected void pushWindow(ImGuiWindow window) {
+        windows.add(window);
+        Imguimc.pushRenderable(window);
+    }
+
+    protected void pullWindow(ImGuiWindow window) {
+        windows.remove(window);
+        Imguimc.pullRenderableAfterRender(window);
+    }
 }
