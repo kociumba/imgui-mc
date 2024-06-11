@@ -13,9 +13,12 @@ public class ImGuiScreen extends Screen {
 
     boolean closeWhenNoWindows;
 
+    boolean alreadyInitialised;
+
     protected ImGuiScreen(Component component, boolean closeWhenNoWindows) {
         super(component);
         this.closeWhenNoWindows = closeWhenNoWindows;
+        alreadyInitialised = false;
     }
 
     protected List<ImGuiWindow> initImGui() {
@@ -25,9 +28,12 @@ public class ImGuiScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        windows = initImGui();
-        for (ImGuiWindow window : windows) {
-            Imguimc.pushRenderable(window);
+        if (!alreadyInitialised) {
+            windows = initImGui();
+            for (ImGuiWindow window : windows) {
+                Imguimc.pushRenderable(window);
+            }
+            alreadyInitialised = true;
         }
     }
 
