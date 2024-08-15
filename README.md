@@ -1,6 +1,8 @@
 # imgui-mc
 ImGui for minecraft based on imgui-java
 
+**The currently supported Minecraft version is 1.21.1. Support for previous versions will no longer be provided.**
+
 ## TODO:
 
 - Stop mouse input to imgui while in game
@@ -43,16 +45,17 @@ modImplementation "xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_version}"
 ## Current versions
 
 | MC version | imguimc version | imgui-java version                                                  |
-| ---------- |-----------------| ------------------------------------------------------------------- |
+|------------|-----------------| ------------------------------------------------------------------- |
 | 1.17.1     | 1.17.1-1.0.3    | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
 | 1.20.4     | 1.20.4-1.0.4    | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
 | 1.20.4     | 1.20.4-1.0.5    | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
 | 1.20.4     | 1.20.4-1.0.6    | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
 | 1.20.4     | 1.20.4-1.0.7    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12) |
+| 1.21.1     | 1.21.1-1.0.7    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12) |
 
 ## Features
 
-Use the same familiar imgui interface your used to to create a multi window interface in minecraft! (+ screen api for easier development)
+Use the same familiar imgui interface your used to create a multi window interface in minecraft! (+ screen api for easier development)
 
 ### Extensions:
 
