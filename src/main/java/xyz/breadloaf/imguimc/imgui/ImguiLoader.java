@@ -1,8 +1,8 @@
 package xyz.breadloaf.imguimc.imgui;
 
+import com.mojang.blaze3d.platform.Window;
 import imgui.*;
-import imgui.flag.ImGuiCol;
-import imgui.flag.ImGuiConfigFlags;
+import imgui.flag.*;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
 import xyz.breadloaf.imguimc.Imguimc;
@@ -28,6 +28,8 @@ public class ImguiLoader {
         imGuiGlfw.newFrame();
         ImGui.newFrame();
 
+        setupDocking();
+
         //user render code
 
         for (Renderable renderable: Imguimc.renderstack) {
@@ -45,8 +47,30 @@ public class ImguiLoader {
 
         //end of user code
 
+        finishDocking();
+
         ImGui.render();
         endFrame(windowHandle);
+    }
+
+    private static void setupDocking() {
+        int windowFlags = ImGuiWindowFlags.NoDocking;
+
+        Window window = Imguimc.MINECRAFT.getWindow();
+
+        ImGui.setNextWindowPos(window.getX(), window.getY(), ImGuiCond.Always);
+        ImGui.setNextWindowSize(window.getWidth(), window.getHeight());
+        windowFlags |= ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove |
+                ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus | ImGuiWindowFlags.NoBackground;
+
+        ImGui.begin("imgui-mc docking host window", windowFlags);
+
+        ImGui.dockSpace(Imguimc.getDockId(), 0, 0, ImGuiDockNodeFlags.PassthruCentralNode |
+                ImGuiDockNodeFlags.NoCentralNode | ImGuiDockNodeFlags.NoDockingInCentralNode);
+    }
+
+    private static void finishDocking() {
+        ImGui.end();
     }
 
     private static void initializeImGui(long glHandle) {
