@@ -1,12 +1,14 @@
 package xyz.breadloaf.imguimc;
 
-import com.mojang.blaze3d.platform.Window;
+import imgui.ImGui;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import xyz.breadloaf.imguimc.debug.DebugRenderable;
 import xyz.breadloaf.imguimc.interfaces.Renderable;
 import java.util.ArrayList;
 
@@ -22,7 +24,10 @@ public class Imguimc implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-
+        if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
+            LOGGER.info("In development environment, pushing debug renderable.");
+            pushRenderable(new DebugRenderable());
+        }
     }
 
     public static Renderable pushRenderable(Renderable renderable) {
@@ -38,5 +43,12 @@ public class Imguimc implements ClientModInitializer {
     public static Renderable pullRenderableAfterRender(Renderable renderable) {
         toRemove.add(renderable);
         return renderable;
+    }
+
+    /**
+     * Check whether game keyboard inputs are being cancelled.
+     */
+    public static boolean shouldCancelGameKeyboardInputs() {
+        return ImGui.isAnyItemActive() || ImGui.isAnyItemFocused();
     }
 }
