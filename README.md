@@ -53,6 +53,8 @@ modImplementation "xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_version}"
 | 1.20.4     | 1.20.4-1.0.7    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12) |
 | 1.21.1     | 1.21.1-1.0.7    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12) |
 | 1.21.1     | 1.21.1-1.0.8    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12) |
+| 1.21.3     | 1.21.3-1.0.9    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12) |
+
 
 ## Features
 
