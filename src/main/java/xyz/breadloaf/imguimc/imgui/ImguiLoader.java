@@ -5,7 +5,7 @@ import imgui.*;
 import imgui.flag.*;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
-import net.minecraft.util.profiling.Profiler;
+//import net.minecraft.util.profiling.Profiler;
 import xyz.breadloaf.imguimc.Imguimc;
 import xyz.breadloaf.imguimc.interfaces.Renderable;
 
@@ -34,11 +34,11 @@ public class ImguiLoader {
         //user render code
 
         for (Renderable renderable: Imguimc.renderstack) {
-            Profiler.get().push("ImGui Render/"+renderable.getName());
+//            Profiler.get().push("ImGui Render/"+renderable.getName());
             renderable.getTheme().preRender();
             renderable.render();
             renderable.getTheme().postRender();
-            Profiler.get().pop();
+//            Profiler.get().pop();
         }
 
         for (Renderable renderable : Imguimc.toRemove) {

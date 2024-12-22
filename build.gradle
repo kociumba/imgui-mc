@@ -104,6 +104,9 @@ publishing {
 //            name = 'breadloaf.public'
 //            url = 'https://maven.breadloaf.xyz/repository/public'
 //        }
-
+        maven {
+            name = 'jitpack'
+            url = 'https://jitpack.io'
+        }
     }
 }

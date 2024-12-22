@@ -1,7 +1,7 @@
 package xyz.breadloaf.imguimc.mixin;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.util.profiling.Profiler;
+//import net.minecraft.util.profiling.Profiler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -13,8 +13,8 @@ import xyz.breadloaf.imguimc.imgui.ImguiLoader;
 public class TailRenderMixin {
     @Inject(at = @At("HEAD"), method="flipFrame")
     private static void runTickTail(CallbackInfo ci) {
-        Profiler.get().push("ImGui Render");
+//        Profiler.get().push("ImGui Render");
         ImguiLoader.onFrameRender();
-        Profiler.get().pop();
+//        Profiler.get().pop();
     }
 }
