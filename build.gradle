@@ -90,11 +90,18 @@ remapJar {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifact(jar.archivePath) {
-                builtBy remapJar
+            groupId = project.maven_group
+            artifactId = project.archives_base_name
+            version = project.mod_version
+
+            from components.java
+
+            artifact(remapJar) {
+                classifier null
             }
             artifact(sourcesJar) {
-                 builtBy remapSourcesJar
+                classifier 'sources'
+                builtBy remapSourcesJar
             }
         }
     }
