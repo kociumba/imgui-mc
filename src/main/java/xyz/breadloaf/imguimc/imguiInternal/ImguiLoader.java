@@ -1,4 +1,4 @@
-package xyz.breadloaf.imguimc.imgui;
+package xyz.breadloaf.imguimc.imguiInternal;
 
 import com.mojang.blaze3d.platform.Window;
 import imgui.*;
@@ -17,6 +17,11 @@ public class ImguiLoader {
     private static final ImGuiImplGl3 imGuiGl3 = new ImGuiImplGl3();
 
     private static long windowHandle;
+
+    /**
+     * overwrite to provide custom font loading
+     */
+    public static InitCallback initCallback;
 
     public static void onGlfwInit(long handle) {
         initializeImGui(handle);
@@ -91,6 +96,11 @@ public class ImguiLoader {
         fontConfig.setGlyphRanges(fontAtlas.getGlyphRangesCyrillic());
 
         fontAtlas.addFontDefault();
+
+        // exposed callback here to allow for custom font loading
+        if (initCallback != null) {
+            initCallback.execute(io, fontAtlas, fontConfig);
+        }
 
         fontConfig.setMergeMode(true); // When enabled, all fonts added with this config would be merged with the previously added font
         fontConfig.setPixelSnapH(true);

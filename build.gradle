@@ -1,7 +1,6 @@
 plugins {
     id "fabric-loom" version "1.7-SNAPSHOT"
     id "com.github.johnrengelman.shadow" version "7.0.0"
-    id 'maven-publish'
 }
 
 apply plugin: 'maven-publish'
@@ -62,8 +61,6 @@ tasks.withType(JavaCompile).configureEach {
 
 java {
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
@@ -90,17 +87,11 @@ remapJar {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = project.maven_group
-            artifactId = project.archives_base_name
-            version = project.mod_version
-
-            from components.java
-
-            artifact(remapJar) {
-                classifier null
+            // Change this to use the remapped shadow jar instead of the regular jar
+            artifact(remapJar.archiveFile) {
+                builtBy remapJar
             }
             artifact(sourcesJar) {
-                classifier 'sources'
                 builtBy remapSourcesJar
             }
         }
@@ -115,8 +106,12 @@ publishing {
 //            url = 'https://maven.breadloaf.xyz/repository/public'
 //        }
         maven {
-            name = 'jitpack'
-            url = 'https://jitpack.io'
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/kociumba/imgui-mc")
+            credentials {
+                username "${System.getenv("GITHUB_ACTOR")}"
+                password "${System.getenv("GITHUB_TOKEN")}"
+            }
         }
     }
 }

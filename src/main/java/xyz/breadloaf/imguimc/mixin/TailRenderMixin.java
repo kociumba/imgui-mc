@@ -6,8 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import xyz.breadloaf.imguimc.Imguimc;
-import xyz.breadloaf.imguimc.imgui.ImguiLoader;
+import xyz.breadloaf.imguimc.imguiInternal.ImguiLoader;
 
 @Mixin(value = RenderSystem.class, remap = false)
 public class TailRenderMixin {
