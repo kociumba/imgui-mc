@@ -6,3 +6,4 @@ before_install:
 install:
   - chmod +x gradlew
   - ./gradlew clean build publishToMavenLocal -x test --stacktrace
+  - cp build/libs/* ~/.m2/repository/
