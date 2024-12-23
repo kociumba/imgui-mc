@@ -6,4 +6,5 @@ before_install:
 install:
   - chmod +x gradlew
   - ./gradlew clean build -x test --stacktrace
+  - mkdir -p ~/.m2/repository/
   - cp build/libs/* ~/.m2/repository/
