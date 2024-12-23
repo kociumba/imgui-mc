@@ -5,6 +5,6 @@ before_install:
   - sdk use java 21.0.1-tem
 install:
   - chmod +x gradlew
-  - ./gradlew clean build -x test --stacktrace
+  - ./gradlew clean install
   - mkdir -p ~/.m2/repository/
   - cp build/libs/* ~/.m2/repository/
