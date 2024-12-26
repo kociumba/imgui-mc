@@ -9,6 +9,9 @@ import imgui.glfw.ImGuiImplGlfw;
 import xyz.breadloaf.imguimc.Imguimc;
 import xyz.breadloaf.imguimc.interfaces.Renderable;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import static org.lwjgl.glfw.GLFW.*;
 
 public class ImguiLoader {
@@ -22,6 +25,24 @@ public class ImguiLoader {
      * overwrite to provide custom font loading
      */
     public static InitCallback initCallback;
+
+    /**
+     * overwrite to provide custom ini file name
+     * <br>
+     * <br>
+     * this should be something like: "config/imgui/imgui-mc.ini"
+     * to avoid any possible conflicts with other mods
+     * <br>
+     * <br>
+     * if not set the settings will be saved to "config/imgui/imgui-mc.ini"
+     * this can couse conflicts if the rare case of more than one mod using imgui-mc
+     * with default settings occurs.
+     * <br>
+     * <br>
+     * if the path you provided fails creation, the settings will not be saved,
+     * until you provide a valid path
+     */
+    public static String iniFileName;
 
     public static void onGlfwInit(long handle) {
         initializeImGui(handle);
@@ -84,7 +105,18 @@ public class ImguiLoader {
 
         final ImGuiIO io = ImGui.getIO();
 
-        io.setIniFilename(null);                               // We don't want to save .ini file
+        // check if the user provided a path
+        iniFileName = iniFileName != null ? iniFileName : "config/imgui/imgui-mc.ini";
+        if (!Files.exists(Paths.get(iniFileName).getParent())) {
+            try {
+                Files.createDirectories(Paths.get(iniFileName).getParent());
+                io.setIniFilename(iniFileName); // We save the .ini to a user defined location [NEW]
+            } catch (Exception e) {
+                Imguimc.LOGGER.error("Failed to create directory for {}", iniFileName, e);
+                io.setIniFilename(null);
+            }
+        }
+//        io.setIniFilename(null);                             // We don't want to save .ini file [OLD]
         io.addConfigFlags(ImGuiConfigFlags.NavEnableKeyboard); // Enable Keyboard Controls
         io.addConfigFlags(ImGuiConfigFlags.DockingEnable);     // Enable Docking
         io.addConfigFlags(ImGuiConfigFlags.ViewportsEnable);   // Enable Multi-Viewport / Platform Windows

@@ -5,7 +5,7 @@ import imgui.ImFontConfig;
 import imgui.ImGuiIO;
 
 /**
- * let's see if this works
+ * the callback used for loading fonts and other custom initialization
  */
 @FunctionalInterface
 public interface InitCallback {

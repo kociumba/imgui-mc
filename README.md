@@ -62,7 +62,7 @@ modImplementation "xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_version}"
 ...
 "depends": {
 ...
-"imguimc": "${imguimc_version}",
+  "imguimc": "${imguimc_version}",
 }
 ...
 ```
@@ -76,18 +76,19 @@ modImplementation(include("xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_vers
 
 ## Current versions
 
-| MC version | imguimc version | imgui-java version                                                     |
-|------------|-----------------|------------------------------------------------------------------------|
-| 1.17.1     | 1.17.1-1.0.3    | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
-| 1.20.4     | 1.20.4-1.0.4    | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
-| 1.20.4     | 1.20.4-1.0.5    | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
-| 1.20.4     | 1.20.4-1.0.6    | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
-| 1.20.4     | 1.20.4-1.0.7    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
-| 1.21.1     | 1.21.1-1.0.7    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
-| 1.21.1     | 1.21.1-1.0.8    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
-| 1.21.3     | 1.21.3-1.0.9    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
-| 1.21.1     | 1.21.1-1.0.10   | 1.86.12(backport to 1.21.1)                                            |
-| 1.21.1     | 1.21.1-1.0.11   | 1.86.12(enables custom font loading)                                   |
+| MC version | imguimc version                                    | imgui-java version                                                     |
+|------------|----------------------------------------------------|------------------------------------------------------------------------|
+| 1.17.1     | 1.17.1-1.0.3                                       | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
+| 1.20.4     | 1.20.4-1.0.4                                       | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
+| 1.20.4     | 1.20.4-1.0.5                                       | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
+| 1.20.4     | 1.20.4-1.0.6                                       | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
+| 1.20.4     | 1.20.4-1.0.7                                       | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
+| 1.21.1     | 1.21.1-1.0.7                                       | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
+| 1.21.1     | 1.21.1-1.0.8                                       | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
+| 1.21.3     | 1.21.3-1.0.9                                       | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
+| 1.21.1     | 1.21.1-1.0.10 (backport to 1.21.1)                 | 1.86.12                                                                |
+| 1.21.1     | 1.21.1-1.0.11 (enables custom font loading)        | 1.86.12                                                                |
+| 1.21.1     | 1.21.1-1.0.12 (enables saving the imgui .ini file) | 1.86.12                                                                |
 
 ## Features
 
@@ -95,6 +96,7 @@ Use the same familiar imgui interface your used to create a multi window interfa
 easier development)
 
 - 1.0.11 - Added custom font loading, through the `imguiInternal.InitCallback` interface.
+- 1.0.12 - Added saving the imgui .ini file, provide a custom path by overriding `imguiInternal.ImguiLoader.iniFileName`.
 
 ### Extensions:
 
