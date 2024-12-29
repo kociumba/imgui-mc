@@ -5,8 +5,9 @@
   "name": "imgui-mc",
   "description": "",
   "authors": [
-    "mjwells2002 (Original author)",
-    "AlignedCookie88 (Port to 1.20.4)"
+    "mjwells2002 (Original author, versions 1.0.0 - 1.0.3)",
+    "AlignedCookie88 (Port to 1.20.4, versions 1.0.4 - 1.0.9)",
+    "kociumba (since version 1.0.10)"
   ],
   "contact": {},
   "license": "MIT",
