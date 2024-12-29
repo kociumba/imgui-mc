@@ -1,7 +1,6 @@
 package xyz.breadloaf.imguimc.screen;
 
 import imgui.ImGui;
-import imgui.flag.ImGuiWindowFlags;
 import imgui.type.ImBoolean;
 import net.minecraft.network.chat.Component;
 import xyz.breadloaf.imguimc.Imguimc;
