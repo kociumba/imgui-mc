@@ -1,6 +1,7 @@
 package xyz.breadloaf.imguimc.screen;
 
 import imgui.ImGui;
+import imgui.flag.ImGuiWindowFlags;
 import imgui.type.ImBoolean;
 import net.minecraft.network.chat.Component;
 import xyz.breadloaf.imguimc.Imguimc;
@@ -18,12 +19,15 @@ public class ImGuiWindow implements Renderable {
 
     ImBoolean open;
 
-    public ImGuiWindow(Theme theme, Component name, WindowRenderer renderer, boolean canClose) {
+    public int flags;
+
+    public ImGuiWindow(Theme theme, Component name, WindowRenderer renderer, boolean canClose, int flags) {
         this.theme = theme;
         this.name = name;
         this.renderer = renderer;
         this.canClose = canClose;
         this.open = new ImBoolean(true);
+        this.flags = flags;
     }
 
     @Override
@@ -44,9 +48,9 @@ public class ImGuiWindow implements Renderable {
         }
 
         if (canClose) {
-            ImGui.begin(getName(), open);
+            ImGui.begin(getName(), open, flags);
         } else {
-            ImGui.begin(getName());
+            ImGui.begin(getName(), flags);
         }
 
         renderer.renderWindow();
