@@ -67,6 +67,11 @@ public class ImguiLoader {
 //            Profiler.get().pop();
         }
 
+        for (Renderable renderable : Imguimc.toAdd) {
+            Imguimc.pushRenderable(renderable);
+        }
+        Imguimc.toAdd.clear();
+
         for (Renderable renderable : Imguimc.toRemove) {
             Imguimc.pullRenderable(renderable);
         }

@@ -21,6 +21,7 @@ public class Imguimc implements ClientModInitializer {
     public static ArrayList<Renderable> renderstack = new ArrayList<>();
 
     public static ArrayList<Renderable> toRemove = new ArrayList<>();
+    public static ArrayList<Renderable> toAdd = new ArrayList<>();
 
     @Override
     public void onInitializeClient() {
@@ -37,6 +38,11 @@ public class Imguimc implements ClientModInitializer {
 
     public static Renderable pullRenderable(Renderable renderable) {
         renderstack.remove(renderable);
+        return renderable;
+    }
+
+    public static Renderable pushRenderableAfterRender(Renderable renderable) {
+        toAdd.add(renderable);
         return renderable;
     }
 
