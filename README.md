@@ -91,7 +91,7 @@ modImplementation(include("xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_vers
 | 1.21.1     | 1.21.1-1.0.12 (enables saving the imgui .ini file)    | 1.86.12                                                                |
 | 1.21.1     | 1.21.1-1.0.13 (imgui window flags support in screens) | 1.86.12                                                                |
 | 1.21.1     | 1.21.1-1.0.14 (added pushRenderableAfterRender)       | 1.86.12                                                                |
-
+| 1.21.1     | 1.21.1-1.0.15 (added font awesome icons)              | 1.86.12                                                                |
 ## Features
 
 Use the same familiar imgui interface your used to create a multi window interface in minecraft! (+ screen api for

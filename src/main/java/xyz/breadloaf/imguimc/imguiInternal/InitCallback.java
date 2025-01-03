@@ -9,5 +9,5 @@ import imgui.ImGuiIO;
  */
 @FunctionalInterface
 public interface InitCallback {
-    void execute(ImGuiIO io, ImFontAtlas fontAtlas, ImFontConfig fontConfig);
+    void execute(ImGuiIO io, ImFontAtlas fontAtlas, ImFontConfig fontConfig, short[] glyphRanges);
 }

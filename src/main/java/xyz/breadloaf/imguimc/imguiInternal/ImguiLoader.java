@@ -7,8 +7,11 @@ import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
 //import net.minecraft.util.profiling.Profiler;
 import xyz.breadloaf.imguimc.Imguimc;
+import xyz.breadloaf.imguimc.icons.FontAwesomeIcons;
 import xyz.breadloaf.imguimc.interfaces.Renderable;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -46,7 +49,7 @@ public class ImguiLoader {
 
     public static void onGlfwInit(long handle) {
         initializeImGui(handle);
-        imGuiGlfw.init(handle,true);
+        imGuiGlfw.init(handle, true);
         imGuiGl3.init();
         windowHandle = handle;
     }
@@ -59,7 +62,7 @@ public class ImguiLoader {
 
         //user render code
 
-        for (Renderable renderable: Imguimc.renderstack) {
+        for (Renderable renderable : Imguimc.renderstack) {
 //            Profiler.get().push("ImGui Render/"+renderable.getName());
             renderable.getTheme().preRender();
             renderable.render();
@@ -98,7 +101,7 @@ public class ImguiLoader {
         ImGui.begin("imgui-mc docking host window", windowFlags);
 
         ImGui.dockSpace(Imguimc.getDockId(), 0, 0, ImGuiDockNodeFlags.PassthruCentralNode |
-                ImGuiDockNodeFlags.NoCentralNode | ImGuiDockNodeFlags.NoDockingInCentralNode);
+                ImGuiDockNodeFlags.NoDockingInCentralNode);
     }
 
     private static void finishDocking() {
@@ -130,18 +133,29 @@ public class ImguiLoader {
         final ImFontAtlas fontAtlas = io.getFonts();
         final ImFontConfig fontConfig = new ImFontConfig(); // Natively allocated object, should be explicitly destroyed
 
-        fontConfig.setGlyphRanges(fontAtlas.getGlyphRangesCyrillic());
+//        fontAtlas.setFreeTypeRenderer(true); // can't access FreeType, couse it's in versions 1.87+, which seem to be incompatible
 
         fontAtlas.addFontDefault();
 
-        // exposed callback here to allow for custom font loading
-        if (initCallback != null) {
-            initCallback.execute(io, fontAtlas, fontConfig);
-        }
+        final ImFontGlyphRangesBuilder rangesBuilder = new ImFontGlyphRangesBuilder(); // Glyphs ranges provide
+        rangesBuilder.addRanges(fontAtlas.getGlyphRangesDefault());
+        rangesBuilder.addRanges(fontAtlas.getGlyphRangesCyrillic());
+        rangesBuilder.addRanges(fontAtlas.getGlyphRangesJapanese());
+        rangesBuilder.addRanges(FontAwesomeIcons._IconRange);
 
         fontConfig.setMergeMode(true); // When enabled, all fonts added with this config would be merged with the previously added font
-        fontConfig.setPixelSnapH(true);
+//        fontConfig.setPixelSnapH(true);
 
+        final short[] glyphRanges = rangesBuilder.buildRanges();
+        fontAtlas.addFontFromMemoryTTF(loadFromResources("/fonts/icons/fa-regular-400.ttf"), 14, fontConfig, glyphRanges);
+        fontAtlas.addFontFromMemoryTTF(loadFromResources("/fonts/icons/fa-solid-900.ttf"), 14, fontConfig, glyphRanges);
+
+        // exposed callback here to allow for custom font loading
+        if (initCallback != null) {
+            initCallback.execute(io, fontAtlas, fontConfig, glyphRanges);
+        }
+
+        fontAtlas.build();
         fontConfig.destroy();
 
         if (io.hasConfigFlags(ImGuiConfigFlags.ViewportsEnable)) {
@@ -165,5 +179,13 @@ public class ImguiLoader {
 
         //glfwSwapBuffers(windowPtr);
         //glfwPollEvents();
+    }
+
+    private static byte[] loadFromResources(String name) {
+        try {
+            return Files.readAllBytes(Paths.get(ImguiLoader.class.getResource(name).toURI()));
+        } catch (IOException | URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import xyz.breadloaf.imguimc.debug.DebugRenderable;
 import xyz.breadloaf.imguimc.interfaces.Renderable;
+
 import java.util.ArrayList;
 
 
@@ -27,7 +28,7 @@ public class Imguimc implements ClientModInitializer {
     public void onInitializeClient() {
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
             LOGGER.info("In development environment, pushing debug renderable.");
-            pushRenderable(new DebugRenderable());
+            pushRenderableAfterRender(new DebugRenderable());
         }
     }
 
