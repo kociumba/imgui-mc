@@ -19,32 +19,44 @@ to avoid this package from ever going down.
 
 ### 1.0.3 and below
 
+`build.gradle` or `build.gradle.kts`:
 ```groovy
-maven {
-    name = "breadloaf.public"
-    url = "https://maven.breadloaf.xyz/repository/public"
+repositories {
+    maven {
+        name = "breadloaf.public"
+        url = "https://maven.breadloaf.xyz/repository/public"
+    }
+  // ...
 }
 ```
 
 ### 1.0.6 - 1.0.9
 
+`build.gradle` or `build.gradle.kts`:
 ```groovy
-maven {
-    name = "AlignedCookie88"
-    url = "https://repo.alignedcookie88.com/repository/maven-public/"
+repositories {
+    maven {
+        name = "AlignedCookie88"
+        url = "https://repo.alignedcookie88.com/repository/maven-public/"
+    }
+  // ...
 }
 ```
 
 ### 1.0.10 and above
 
+`build.gradle` or `build.gradle.kts`:
 ```groovy
 // hosting the package on github packages requires authentication
-maven {
-    url = uri("https://maven.pkg.github.com/kociumba/imgui-mc")
-    credentials {
-        username = "your github username"
-        password = "github access token"
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/kociumba/imgui-mc")
+        credentials {
+            username = "your github username"
+            password = "github access token"
+        }
     }
+  // ...
 }
 ```
 
@@ -52,12 +64,18 @@ maven {
 
 ### 1.0.9 and below
 
+> [!TIP]
+> if you set up the `imguimc_version` in `gradle.properties`, you can use it here
+
+`build.gradle` or `build.gradle.kts`:
 ```groovy
 modImplementation "xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_version}"
 ```
 
-## fabric.mod.json
 
+you only need to add this as a dependency if you aren't using `include`
+
+`fabric.mod.json`:
 ```json
 ...
 "depends": {
@@ -69,6 +87,7 @@ modImplementation "xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_version}"
 
 ### 1.0.10 and above
 
+`build.gradle` or `build.gradle.kts`:
 ```groovy
 // these versions are not going to be published to modrinth so i recommend including in jar
 modImplementation(include("xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_version}"))
@@ -82,17 +101,17 @@ modImplementation(include("xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_vers
 | 1.20.4     | 1.20.4-1.0.4                                          | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
 | 1.20.4     | 1.20.4-1.0.5                                          | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
 | 1.20.4     | 1.20.4-1.0.6                                          | [1.84.1.1](https://github.com/SpaiR/imgui-java/releases/tag/v1.84.1.1) |
-| 1.20.4     | 1.20.4-1.0.7                                          | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
-| 1.21.1     | 1.21.1-1.0.7                                          | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
-| 1.21.1     | 1.21.1-1.0.8                                          | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
-| 1.21.3     | 1.21.3-1.0.9                                          | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/1.86.12)    |
-| 1.21.1     | 1.21.1-1.0.10 (backport to 1.21.1)                    | 1.86.12                                                                |
-| 1.21.1     | 1.21.1-1.0.11 (enables custom font loading)           | 1.86.12                                                                |
-| 1.21.1     | 1.21.1-1.0.12 (enables saving the imgui .ini file)    | 1.86.12                                                                |
-| 1.21.1     | 1.21.1-1.0.13 (imgui window flags support in screens) | 1.86.12                                                                |
-| 1.21.1     | 1.21.1-1.0.14 (added pushRenderableAfterRender)       | 1.86.12                                                                |
-| 1.21.1     | 1.21.1-1.0.15 (added font awesome icons)              | 1.86.12                                                                |
-| 1.21.4     | 1.21.4-1.0.15 (port for 1.21.4)                       | 1.86.12                                                                |
+| 1.20.4     | 1.20.4-1.0.7                                          | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.1     | 1.21.1-1.0.7                                          | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.1     | 1.21.1-1.0.8                                          | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.3     | 1.21.3-1.0.9                                          | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.1     | 1.21.1-1.0.10 (backport to 1.21.1)                    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.1     | 1.21.1-1.0.11 (enables custom font loading)           | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.1     | 1.21.1-1.0.12 (enables saving the imgui .ini file)    | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.1     | 1.21.1-1.0.13 (imgui window flags support in screens) | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.1     | 1.21.1-1.0.14 (added pushRenderableAfterRender)       | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.1     | 1.21.1-1.0.15 (added font awesome icons)              | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.4     | 1.21.4-1.0.15 (port for 1.21.4)                       | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
 
 ## Features
 
