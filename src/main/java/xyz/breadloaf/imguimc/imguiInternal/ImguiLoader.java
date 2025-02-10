@@ -6,6 +6,7 @@ import imgui.flag.*;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
 //import net.minecraft.util.profiling.Profiler;
+import imgui.internal.ImGuiDockNode;
 import xyz.breadloaf.imguimc.Imguimc;
 import xyz.breadloaf.imguimc.icons.FontAwesomeIcons;
 import xyz.breadloaf.imguimc.interfaces.Renderable;
@@ -96,12 +97,24 @@ public class ImguiLoader {
         ImGui.setNextWindowPos(window.getX(), window.getY(), ImGuiCond.Always);
         ImGui.setNextWindowSize(window.getWidth(), window.getHeight());
         windowFlags |= ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove |
-                ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus | ImGuiWindowFlags.NoBackground;
+                ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus | ImGuiWindowFlags.NoBackground |
+                ImGuiWindowFlags.NoNavInputs;
 
+        ImGui.pushStyleVar(ImGuiStyleVar.WindowPadding, 0, 0);
+        ImGui.pushStyleVar(ImGuiStyleVar.WindowBorderSize, 0);
         ImGui.begin("imgui-mc docking host window", windowFlags);
+        ImGui.popStyleVar(2);
 
-        ImGui.dockSpace(Imguimc.getDockId(), 0, 0, ImGuiDockNodeFlags.PassthruCentralNode |
-                ImGuiDockNodeFlags.NoDockingInCentralNode);
+        int id = ImGui.dockSpace(Imguimc.getDockId(), 0, 0, ImGuiDockNodeFlags.PassthruCentralNode |
+                ImGuiDockNodeFlags.NoCentralNode | ImGuiDockNodeFlags.NoDockingInCentralNode);
+
+        ImGuiDockNode centre = imgui.internal.ImGui.dockBuilderGetCentralNode(id);
+        WindowScaling.X_OFFSET = (int) centre.getPosX() - window.getX();
+        WindowScaling.Y_OFFSET = (int) centre.getPosY() - window.getY();
+        WindowScaling.Y_TOP_OFFSET = (int) (window.getHeight() - ((centre.getPosY() - window.getY()) + centre.getSizeY()));
+        WindowScaling.WIDTH = (int) centre.getSizeX();
+        WindowScaling.HEIGHT = (int) centre.getSizeY();
+        WindowScaling.update();
     }
 
     private static void finishDocking() {

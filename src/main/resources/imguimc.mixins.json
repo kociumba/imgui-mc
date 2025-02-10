@@ -4,7 +4,11 @@
   "package": "xyz.breadloaf.imguimc.mixin",
   "compatibilityLevel": "JAVA_16",
   "client": [
+    "GameRendererMixin",
+    "GlStateManagerMixin",
     "KeyboardHandlerMixin",
+    "MouseHandlerMixin",
+    "PostPassMixin",
     "TailRenderMixin"
   ],
   "injectors": {
