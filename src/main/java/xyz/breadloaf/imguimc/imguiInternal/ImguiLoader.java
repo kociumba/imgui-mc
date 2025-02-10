@@ -98,7 +98,10 @@ public class ImguiLoader {
         windowFlags |= ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove |
                 ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus | ImGuiWindowFlags.NoBackground;
 
+        ImGui.pushStyleVar(ImGuiStyleVar.WindowPadding, 0, 0);
+        ImGui.pushStyleVar(ImGuiStyleVar.WindowBorderSize, 0);
         ImGui.begin("imgui-mc docking host window", windowFlags);
+        ImGui.popStyleVar(2);
 
         ImGui.dockSpace(Imguimc.getDockId(), 0, 0, ImGuiDockNodeFlags.PassthruCentralNode |
                 ImGuiDockNodeFlags.NoDockingInCentralNode);
