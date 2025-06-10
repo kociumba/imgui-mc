@@ -112,6 +112,7 @@ modImplementation(include("xyz.breadloaf.imguimc:imgui-mc:${project.imguimc_vers
 | 1.21.1     | 1.21.1-1.0.14 (added pushRenderableAfterRender)       | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
 | 1.21.1     | 1.21.1-1.0.15 (added font awesome icons)              | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
 | 1.21.4     | 1.21.4-1.0.15 (port for 1.21.4)                       | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
+| 1.21.5     | 1.21.5-1.0.15 (port for 1.21.5)                       | [1.86.12](https://github.com/SpaiR/imgui-java/releases/tag/v1.86.12)   |
 
 ## Features
 
