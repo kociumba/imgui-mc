@@ -13,7 +13,7 @@ public class KeyboardHandlerMixin {
 
     @Inject(method = "setup", at = @At("TAIL"))
     public void setup(long l, CallbackInfo ci) {
-        ImguiLoader.onGlfwInit(l);
+//        ImguiLoader.onGlfwInit(l); // this is broken in 1.21.5
     }
 
     @Inject(method = "keyPress", at = @At("HEAD"), cancellable = true)
